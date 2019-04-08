@@ -12,7 +12,7 @@ namespace WineBook.Controllers
     {
         public IActionResult GetWineryPartialView()
         {
-            return PartialView("_WineryCreatePartial", new Models.Winery());
+            return PartialView("_WineryCreatePartial", new Models.ProducerViewModel());
         }
     }
 }
