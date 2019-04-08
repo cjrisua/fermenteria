@@ -1,0 +1,11 @@
+﻿@model WineBook.Models.Winery
+@* This is needed to bind the collection back to the Parent on Submit *@
+
+<div id="child-@Model.WineryId">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="WineMakerName" class="control-label"></label>
+        <input asp-for="WineMakerName" class="form-control" />
+        <span asp-validation-for="WineMakerName" class="text-danger"></span>
+    </div>
+</div>

@@ -46,6 +46,8 @@ namespace WineBook.Controllers
         // GET: Producer/Create
         public IActionResult Create()
         {
+
+
             return View();
         }
 
@@ -54,7 +56,8 @@ namespace WineBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProducerId,ProducerName,Website")] Producer producer)
+        public async Task<IActionResult> Create(
+            [Bind("ProducerId,ProducerName,Website,ProductionType")] Producer producer)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +89,7 @@ namespace WineBook.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProducerId,ProducerName,Website")] Producer producer)
+        public async Task<IActionResult> Edit(int id, [Bind("ProducerId,ProducerName,Website,ProductionType")] Producer producer)
         {
             if (id != producer.ProducerId)
             {

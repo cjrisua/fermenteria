@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace WineBook.Models
 {
-    public class Brewery : Producer
+    public class Brewery 
     {
-       
+        public int BreweryId { get; set; }
+     
     }
 }

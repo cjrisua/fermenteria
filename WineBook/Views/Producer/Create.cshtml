@@ -8,6 +8,7 @@
 
 <h4>Producer</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -23,8 +24,18 @@
                 <span asp-validation-for="Website" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ProductionType" class="control-label"></label>
+                <select asp-for="ProductionType" asp-items="Html.GetEnumSelectList<WineBook.Models.Enums.ProductionType>()" 
+                class="form-control" id="productionType">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="ProductionType" class="text-danger"></span>
+            </div>
+            <div id="productionDiv"></div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+
         </form>
     </div>
 </div>
@@ -35,4 +46,29 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">let requestVerificationToken = $("input[name='__RequestVerificationToken']").val();
+    $("#productionType").change(function () {
+
+        var ptype = $("#productionType option:selected").text()
+        var viewurl;
+        if (ptype.includes("Wine") > 0)
+            viewurl = "/Winery/GetWineryPartialView";
+        else if (ptype.includes("Brew") > 0)
+            viewurl = "/Brewery/GetBreweryPartialView";
+        console.log(viewurl);
+        $.ajax({
+            type: "GET",
+            url: viewurl,
+            headers: {
+                "RequestVerificationToken": requestVerificationToken
+            }
+        }).done(function (data, statusText, xhdr) {
+            console.log("--Done--");
+            $("#productionDiv").html(data);
+        }).fail(function (xhdr, statusText, errorText) {
+            console.log("Failed");
+            //$("#newChildDiv").text(JSON.stringify(xhdr));
+        });
+    });</script>
 }

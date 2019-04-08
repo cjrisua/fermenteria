@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Models\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Home\Allocation.cshtml" />

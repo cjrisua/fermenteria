@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WineBook.Models
 {
@@ -18,5 +16,7 @@ namespace WineBook.Models
         public string Website { get; set; }
 
         public virtual ICollection<Container> Bottles { get; set; }
+
+        public Enums.ProductionType ProductionType { get; set; }
     }
 }
