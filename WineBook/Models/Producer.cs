@@ -15,6 +15,9 @@ namespace WineBook.Models
         [StringLength(50)]
         public string Website { get; set; }
 
+        [Display(Name = "Open to Public")]
+        public Enums.YesNo IsOpenToPublic { get; set; }
+
         public virtual ICollection<Container> Bottles { get; set; }
 
         public Enums.ProductionType ProductionType { get; set; }

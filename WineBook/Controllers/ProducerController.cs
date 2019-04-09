@@ -57,16 +57,26 @@ namespace WineBook.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Producer","Winery","Brewery")] ProducerViewModel producerViewModel)
+            [Bind("Producer","Winery", "Brewery")] ProducerViewModel producerViewModel)
         {
             if(ModelState.IsValid)
             {
                 _context.Add(producerViewModel.Producer);
-                _context.Add(producerViewModel.Winery);
-                await _context.SaveChangesAsync();
-                //_context.Add(producerViewModel.Brewery);
-                //await _context.SaveChangesAsync();
+
+                if (producerViewModel.Winery != null){
+                    producerViewModel.Winery.Producer = producerViewModel.Producer;
+                    _context.Add(producerViewModel.Winery);
+                }
+
                
+
+                if (producerViewModel.Brewery != null){
+                    producerViewModel.Brewery.Producer = producerViewModel.Producer;
+                    _context.Add(producerViewModel.Brewery);
+                }
+                else
+                    throw new Exception();
+
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));

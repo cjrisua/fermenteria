@@ -1,6 +1,6 @@
-﻿@model WineBook.Models.Brewery
+﻿@model WineBook.Models.ProducerViewModel
 @* This is needed to bind the collection back to the Parent on Submit *@
 
-<div id="child-@Model.BreweryId">
-
+<div id="brewery" style="display: none;">
+        @Html.HiddenFor(m => m.Brewery.BreweryId)
 </div>
