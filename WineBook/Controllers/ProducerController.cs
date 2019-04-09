@@ -61,20 +61,19 @@ namespace WineBook.Controllers
         {
             if(ModelState.IsValid)
             {
-                _context.Add(producerViewModel.Producer);
+                var status = _context.Add(producerViewModel.Producer);
 
                 if (producerViewModel.Winery != null){
                     producerViewModel.Winery.Producer = producerViewModel.Producer;
                     _context.Add(producerViewModel.Winery);
                 }
 
-               
-
                 if (producerViewModel.Brewery != null){
                     producerViewModel.Brewery.Producer = producerViewModel.Producer;
                     _context.Add(producerViewModel.Brewery);
                 }
-                else
+
+                if (producerViewModel.Brewery == null && producerViewModel.Winery == null)
                     throw new Exception();
 
                 await _context.SaveChangesAsync();
